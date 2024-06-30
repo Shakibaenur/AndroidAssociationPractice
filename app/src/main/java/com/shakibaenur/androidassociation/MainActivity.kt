@@ -82,7 +82,12 @@ fun EditNumberField(
         label = { Text(text = stringResource(id = label)) },
         keyboardOptions = keyboardOptions,
         modifier = modifier.testTag(testTag),
-        leadingIcon = {Icon(painter = painterResource(id = leadingIcon), contentDescription = null)}
+        leadingIcon = {
+            Icon(
+                painter = painterResource(id = leadingIcon),
+                contentDescription = null
+            )
+        }
     )
 }
 
@@ -118,7 +123,7 @@ fun TipTimeLayout() {
     var roundUp by remember {
         mutableStateOf(false)
     }
-    val tip = calculateTip(amount, tipPercentage,roundUp)
+    val tip = calculateTip(amount, tipPercentage, roundUp)
     Column(
         modifier = Modifier
             .statusBarsPadding()
@@ -164,8 +169,10 @@ fun TipTimeLayout() {
             testTag = "TipPercentageField"
         )
 
-        RoundTheTipRow(roundUp = roundUp, onRoundUpChange = {roundUp=it},
-            modifier = Modifier.padding(bottom = 32.dp))
+        RoundTheTipRow(
+            roundUp = roundUp, onRoundUpChange = { roundUp = it },
+            modifier = Modifier.padding(bottom = 32.dp)
+        )
         Text(
             text = stringResource(id = R.string.tip_amount, tip),
             style = MaterialTheme.typography.displaySmall
@@ -173,6 +180,7 @@ fun TipTimeLayout() {
         Spacer(modifier = Modifier.height(150.dp))
     }
 }
+
 @VisibleForTesting
 internal fun calculateTip(amount: Double, tipPercent: Double = 15.0, roundUp: Boolean): String {
     var tip = tipPercent / 100 * amount
