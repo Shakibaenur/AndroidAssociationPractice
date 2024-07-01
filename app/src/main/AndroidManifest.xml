@@ -13,7 +13,7 @@
         android:theme="@style/Theme.AndroidAssociation"
         tools:targetApi="31" >
         <activity
-            android:name=".practice.DiceRollerActivity"
+            android:name=".practice.LemonadeActivity"
             android:exported="true"
             android:label="@string/title_activity_dice_roller"
             android:theme="@style/Theme.AndroidAssociation" >
@@ -22,6 +22,13 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".practice.DiceRollerActivity"
+            android:exported="true"
+            android:label="@string/title_activity_dice_roller"
+            android:theme="@style/Theme.AndroidAssociation" >
+
         </activity>
         <activity
             android:name=".MainActivity"
