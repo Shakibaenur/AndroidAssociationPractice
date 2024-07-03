@@ -58,6 +58,7 @@ import androidx.compose.ui.unit.dp
 import com.shakibaenur.androidassociation.R
 import com.shakibaenur.androidassociation.ui.theme.AndroidAssociationTheme
 import java.text.NumberFormat
+import java.util.UUID
 
 class LemonadeActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
@@ -139,6 +140,7 @@ fun LemonApp() {
                 contentDescriptionId = R.string.empty_glass_content_description,
                 onImageClick = {
                     currentStep=1
+                    UUID.randomUUID()
                 })
         }
 
@@ -173,6 +175,7 @@ fun LemonTextAndImage(
             }
             Spacer(modifier = Modifier.height(32.dp))
             Text(text= stringResource(id = textLabelId),
+
                 style=MaterialTheme.typography.bodyLarge)
         }
     }
@@ -182,6 +185,7 @@ fun LemonTextAndImage(
 @Composable
 fun LemonadePreview() {
     AndroidAssociationTheme {
+        LemonApp()
         //DiceRoller(modifier=Modifier.fillMaxSize().wrapContentSize(Alignment.Center))
     }
 }

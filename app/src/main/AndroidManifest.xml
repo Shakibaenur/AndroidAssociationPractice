@@ -17,6 +17,13 @@
             android:exported="true"
             android:label="@string/title_activity_dice_roller"
             android:theme="@style/Theme.AndroidAssociation" >
+
+        </activity>
+        <activity
+            android:name=".practice.ScrollableListActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.AndroidAssociation" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
