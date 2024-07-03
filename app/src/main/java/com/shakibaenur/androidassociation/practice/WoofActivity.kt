@@ -127,7 +127,7 @@ fun DogItem(
             }
             if(expanded) {
                 DogHobby(dogHobby = dog.hobbies,
-                    modifier=Modifier.padding(start = 12.dp,top=8.dp,end=8.dp,bottom=12.dp))
+                    modifier=Modifier.padding(start =18.dp,top=8.dp,end=8.dp,bottom=12.dp))
             }
         }
 
@@ -180,7 +180,7 @@ fun DogInformation(
     Column(modifier = modifier) {
         Text(
             text = stringResource(dogName),
-            style = MaterialTheme.typography.displayMedium,
+            style = MaterialTheme.typography.displaySmall,
             modifier = Modifier.padding(top =8.dp)
         )
         Text(
