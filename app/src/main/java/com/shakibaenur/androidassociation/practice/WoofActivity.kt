@@ -33,6 +33,8 @@ import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CardElevation
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -77,7 +79,7 @@ class WoofActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                   WoofApp()
+                    WoofApp()
                 }
             }
         }
@@ -93,8 +95,10 @@ fun WoofApp() {
     ) { it ->
         LazyColumn(contentPadding = it) {
             items(dogs) {
-                DogItem(dog=it,
-                    modifier = Modifier.padding(8.dp))
+                DogItem(
+                    dog = it,
+                    modifier = Modifier.padding(8.dp)
+                )
             }
         }
     }
@@ -108,7 +112,15 @@ fun DogItem(
     var expanded by remember {
         mutableStateOf(false)
     }
-    Card(modifier = modifier) {
+    Card(
+        modifier = modifier,
+        elevation = CardDefaults.cardElevation(
+            pressedElevation = 13.dp,
+            defaultElevation = 4.dp,
+            focusedElevation = 4.dp,
+            disabledElevation = 1.dp
+        )
+    ) {
         Column(
             modifier = Modifier.animateContentSize(
                 animationSpec = spring(
@@ -116,18 +128,27 @@ fun DogItem(
                     stiffness = Spring.StiffnessVeryLow
                 )
             )
-        ){
-            Row (modifier= Modifier
-                .fillMaxWidth()
-                .padding(8.dp)){
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp)
+            ) {
                 DogIcon(dog.imageResourceId)
                 DogInformation(dogName = dog.name, dogAge = dog.age)
                 Spacer(modifier = Modifier.weight(1f))
                 DogItemButton(expanded = expanded, onClick = { expanded = !expanded })
             }
-            if(expanded) {
-                DogHobby(dogHobby = dog.hobbies,
-                    modifier=Modifier.padding(start =18.dp,top=8.dp,end=8.dp,bottom=12.dp))
+            if (expanded) {
+                DogHobby(
+                    dogHobby = dog.hobbies,
+                    modifier = Modifier.padding(
+                        start = 18.dp,
+                        top = 8.dp,
+                        end = 8.dp,
+                        bottom = 12.dp
+                    )
+                )
             }
         }
 
@@ -171,6 +192,7 @@ fun DogIcon(
         contentDescription = null
     )
 }
+
 @Composable
 fun DogInformation(
     @StringRes dogName: Int,
@@ -181,7 +203,7 @@ fun DogInformation(
         Text(
             text = stringResource(dogName),
             style = MaterialTheme.typography.displaySmall,
-            modifier = Modifier.padding(top =8.dp)
+            modifier = Modifier.padding(top = 8.dp)
         )
         Text(
             text = stringResource(R.string.years_old, dogAge),
@@ -208,6 +230,7 @@ fun DogHobby(
         )
     }
 }
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun WoofTopAppBar(modifier: Modifier = Modifier) {
